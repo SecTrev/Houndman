@@ -15,10 +15,17 @@ func main() {
 
 	wordlist := flag.String("w", "", "Path to the wordlist")
 	url := flag.String("u", "", "URL to scan")
+	help := flag.Bool("help", false, "Show help message")
 	flag.Parse()
 
+	usage := func() {
+		fmt.Println("houndman -w wordlist.txt -u http://example.com \nFor further help visit https://github.com/SecTrev/Houndman")
+		fmt.Println("\nOptions:")
+		flag.PrintDefaults()
+	}
+
 	if *wordlist == "" || *url == "" {
-		fmt.Println("Usage: houndman -w wordlist.txt -u http://example.com")
+		fmt.Println("houndman -w wordlist.txt -u http://example.com \nFor further help visit https://github.com/SecTrev/Houndman")
 		os.Exit(1)
 	}
 
@@ -57,5 +64,10 @@ func main() {
 
 	if err := scanner.Err(); err != nil {
 		fmt.Printf("Error reading wordlist: %v\n", err)
+	}
+
+	if *help || *wordlist == "" || *url == "" {
+		usage()
+		os.Exit(1)
 	}
 }
