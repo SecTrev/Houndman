@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Houndman")
+	fmt.Println("01001000 01101111 01110101 01101110 01100100 01101101 01100001 01101110")
 	//Created with love -Trevor
 
 	wordlist := flag.String("w", "", "Path to the wordlist")
